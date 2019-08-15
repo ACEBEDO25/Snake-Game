@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+  <script src="Utilities/Cell.js"></script>
+  <script src="Utilities/Grid.js"></script>
+  <script src="Utilities/Game Engine/SnakeCell.js"></script>
+  <script src="Utilities/Game Engine/Snake.js"></script>
+  <script src="Utilities/Game Engine/Food.js"></script>
+  <script src="sketch.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Snake Game</title>
+</head>
+
+<body>
+  <main id="container">
+    <div id="top-part" class="edges-part">
+      <h2>The Snake Game!</h2>
+      <h4>An adaptation using the p5.js library</h4>
+    </div>
+    <div id="main-part">
+      <div id="div-time" class="info-displayer">Time of Play<br>
+        <div id="time" class="info-number">0</div>
+      </div>
+      <div id="div-score" class="info-displayer">Score<br>
+        <div id="score" class="info-number">0</div>
+      </div>
+      <button id="btn-reset">RESET</button>
+    </div>
+    <div id="end-part" class="edges-part">
+        <h2>
+          Thanks Daniel Shiffman (<a href="https://youtu.be/OMoVcohRgZA" target="_blank">link</a>)
+          and Frederik Shull (<a href="https://zlyfer.net/sites/games/snake/" target="_blank">link</a>)
+          for the inspiration!
+        </h2>
+        <h4>Made by: Tony Manjarres</h4>
+    </div>
+  </main>
+</body>
+
+</html>
