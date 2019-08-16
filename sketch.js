@@ -1,6 +1,6 @@
 let constraints = {};
 let dir = {};
-let score, txtScore, timer, txtTime;
+let score;
 let cellSize = 50;
 let snake, food;
 let route;
@@ -60,7 +60,7 @@ function keyPressed() {
 
 function draw() {
 	background(255);
-	txtTime.innerText = `${int(millis() / 1000)} s`;
+	select('#time').html(`${int(millis() / 1000)} s`);
 	grid.display();
 	drawOutline();
 	snake.show(cellSize, color(0));
@@ -74,7 +74,7 @@ function draw() {
 	food.show(cellSize, color(139, 50, 72));
 	if (snake.eat(food)) {
 		score += 10;
-		txtScore.innerText = `${score}`;
+		select('#score').html(`${score}`);
 		let pos;
 		do {
 			pos = grid.randomCell().pos.copy();
@@ -98,16 +98,11 @@ function init() {
 	frameRate(10);
 	textAlign(CENTER, CENTER);
 	score = 0;
-	timer = 0;
 	const btnReset = document.getElementById('btn-reset');
 	btnReset.addEventListener('click', () => {
 		snake = new Snake(grid.randomCell());
 		food = new Food(grid.randomCell());
 		score = 0;
-		txtScore.innerText = 0;
-		timer = 0;
 		loop();
 	});
-	txtTime = document.getElementById('time');
-	txtScore = document.getElementById('score');
 }
