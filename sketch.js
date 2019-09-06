@@ -1,18 +1,29 @@
 let constraints = {};
-let cellSize;
+let cellSize = 50;
 let dir = {};
 let score;
 let snake, food;
 let route;
 let grid;
+let speed = 10;
 
 function setup() {
 	init();
 	console.log('%c Snake', "color: lime; font-weight: bold");
-	const slider = createSlider(20, 60, 50);
-	reset(slider.value());
+	const slider = createSlider(1, 50, 10);
+	const cols = ceil(width / cellSize);
+	const rows = ceil(height / cellSize);
+	constraints['cols'] = cols;
+	constraints['rows'] = rows;
+	console.log(constraints);
+	grid = new Grid(cellSize);
+	snake = new Snake(grid.randomCell());
+	food = new Food(grid.randomCell());
+	route = createVector();
+	dir['horizontal'] = false;
+	dir['vertical'] = false;
 	slider.input(() => {
-		reset(slider.value());
+		frameRate(slider.value());
 	});
 }
 
@@ -87,30 +98,15 @@ function drawOutline() {
 	pop();
 }
 
-function reset(value) {
-	cellSize = value;
-	const cols = ceil(width / cellSize);
-	const rows = ceil(height / cellSize);
-	constraints['cols'] = cols;
-	constraints['rows'] = rows;
-	console.log(constraints);
-	grid = new Grid(cellSize);
-	snake = new Snake(grid.randomCell());
-	food = new Food(grid.randomCell());
-	route = createVector();
-	dir['horizontal'] = false;
-	dir['vertical'] = false;
-	score = 0;
-	loop();
-}
-
 function init() {
 	createCanvas(600, 500);
-	frameRate(10);
 	textAlign(CENTER, CENTER);
 	score = 0;
 	const btnReset = document.getElementById('btn-reset');
 	btnReset.addEventListener('click', () => {
-		reset();
+		score = 0;
+		snake = new Snake(grid.randomCell());
+		food = new Food(grid.randomCell());
+		loop();
 	});
 }
